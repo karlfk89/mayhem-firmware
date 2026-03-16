@@ -22,7 +22,7 @@ ENV LC_ALL=C.UTF-8
 # Then extract contents to /opt/build/armbin/
 RUN mkdir /opt/build \
  && cd /opt/build \
- && wget -O gcc-arm-none-eabi $ARMBINURL \
+ && wget --no-check-certificate -O gcc-arm-none-eabi $ARMBINURL \
  && mkdir armbin \
  && tar --strip=1 -xjvf gcc-arm-none-eabi -C armbin
 
