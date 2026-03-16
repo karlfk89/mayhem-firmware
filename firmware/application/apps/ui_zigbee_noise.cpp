@@ -130,7 +130,7 @@ void ZigbeeNoiseView::start_scan() {
     baseband::run_image(portapack::spi_flash::image_tag_nfm_audio);
 
     // ── Configure receiver for first channel ──────────────────────────────
-    receiver_model.set_tuning_frequency(channel_to_freq(current_ch_idx));
+    receiver_model.set_target_frequency(channel_to_freq(current_ch_idx));
     receiver_model.set_sampling_rate(ZIGBEE_SAMPLE_RATE);
     receiver_model.set_baseband_bandwidth(ZIGBEE_BANDWIDTH);
     receiver_model.set_lna(24);
@@ -164,7 +164,7 @@ void ZigbeeNoiseView::stop_scan() {
 
 void ZigbeeNoiseView::advance_channel() {
     current_ch_idx = (current_ch_idx + 1) % ZIGBEE_NUM_CHANNELS;
-    receiver_model.set_tuning_frequency(channel_to_freq(current_ch_idx));
+    receiver_model.set_target_frequency(channel_to_freq(current_ch_idx));
     dwell_frame_counter = 0;
 
     // Update channel display
