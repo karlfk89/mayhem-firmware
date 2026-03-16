@@ -129,7 +129,7 @@ const NavigationView::AppList NavigationView::appList = {
     {"search", "Search", RX, Color::yellow(), &bitmap_icon_search, new ViewFactory<SearchView>()},
     {"subghzd", "SubGhzD", RX, Color::yellow(), &bitmap_icon_remote, new ViewFactory<SubGhzDView>()},
     {"weather", "Weather", RX, Color::green(), &bitmap_icon_thermometer, new ViewFactory<WeatherView>()},
-    {"zbgnoise", "ZigBee Noise", RX, Color::cyan(), &bitmap_icon_spectrum, new ViewFactory<ZigbeeNoiseView>()},
+    {"zbgnoise", "ZigBee Noise", RX, Color::cyan(), &bitmap_icon_scanner, new ViewFactory<ZigbeeNoiseView>()},
     /* TX ********************************************************************/
     {"aprstx", "APRS TX", TX, ui::Color::green(), &bitmap_icon_aprs, new ViewFactory<APRSTXView>()},
     {"bletx", "BLE Tx", TX, ui::Color::green(), &bitmap_icon_btle, new ViewFactory<BLETxView>()},
