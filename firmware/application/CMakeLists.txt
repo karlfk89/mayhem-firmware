@@ -319,6 +319,7 @@ set(CPPSRC
 	apps/ui_touch_calibration.cpp
 	apps/ui_touchtunes.cpp
 	apps/ui_weatherstation.cpp
+	apps/ui_zigbee_noise.cpp
 	protocols/aprs.cpp
 	protocols/ax25.cpp
 	protocols/dcs.cpp
