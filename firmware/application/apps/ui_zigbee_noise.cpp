@@ -15,8 +15,6 @@
 #include "baseband_api.hpp"
 #include "string_format.hpp"
 #include "portapack_shared_memory.hpp"
-#include "ui_styles.hpp"
-
 #include <cstring>
 #include <algorithm>
 
@@ -306,9 +304,14 @@ void ZigbeeNoiseView::paint(Painter& painter) {
         {4, BAR_AREA_TOP - 14},
         *Theme::getInstance()->bg_darkest,
         "Avg");
+    const Style style_yellow{
+        .font       = Theme::getInstance()->bg_darkest->font,
+        .background = Theme::getInstance()->bg_darkest->background,
+        .foreground = Color::yellow()
+    };
     painter.draw_string(
         {28, BAR_AREA_TOP - 14},
-        Styles::yellow,
+        style_yellow,
         "Peak");
 
     // ── Scanning indicator (highlight current channel bar outline) ─────────
@@ -369,17 +372,20 @@ void ZigbeeNoiseView::draw_channel_labels(Painter& painter) {
         const int row = (i % 2 == 0) ? 0 : 1;
         const int y   = CHAN_LABEL_Y + row * 9;
 
-        // Highlight current channel during scanning
+        // Highlight the active channel in white, all others in light grey
         const Color lbl_color =
             (scan_state == ScanState::SCANNING && (int)current_ch_idx == i)
             ? Color::white()
             : Color::light_grey();
 
+        const Style lbl_style{
+            .font       = Theme::getInstance()->bg_darkest->font,
+            .background = Theme::getInstance()->bg_darkest->background,
+            .foreground = lbl_color
+        };
+
         const std::string ch_str = to_string_dec_int(ch);
-        painter.draw_string({x, y}, *Theme::getInstance()->bg_darkest, ch_str);
-        (void)lbl_color;  // used via draw_string style override below
-        // Use small font style for channel labels
-        painter.draw_string({x, y}, Styles::small, ch_str);
+        painter.draw_string({x, y}, lbl_style, ch_str);
     }
 }
 
